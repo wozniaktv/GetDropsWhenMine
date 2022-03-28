@@ -1,0 +1,6 @@
+name: GetItemsWhenMined
+version: ${project.version}
+main: wozniaktv.getitemswhenmined.GetItemsWhenMined
+api-version: 1.18
+authors: [ WoZniaK_TV ]
+description: It reduces the lag on the server.
