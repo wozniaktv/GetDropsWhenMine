@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collection;
+
 public class MineEvent implements Listener {
 
     @EventHandler
@@ -15,8 +17,27 @@ public class MineEvent implements Listener {
             /* Gets the Player so he can do some stuff to the player. */
             Player p = event.getPlayer();
 
-            /* Cancels the drops. ~ Now it doesn't actually do it because i didn't figure out how to extract the DropItems and give them directly to the player. */
-            // event.setDropItems(true);
+            /* Cancels the drops. */
+            event.setDropItems(false);
+
+            /* Getting drops and giving them into the Player's inventory */
+            Collection<ItemStack> drops = event.getBlock().getDrops(p.getItemInUse());
+            if(p.getInventory().firstEmpty()==-1) { /* If Player's inventory is full we just use the legacy drops method */
+
+                World w = p.getWorld();
+                for(ItemStack IS : drops){
+                    w.dropItem(event.getBlock().getLocation(), IS);
+                }
+
+            }
+            else
+                for(ItemStack IS : drops){ /* If Player's Inventory is not full it will work. */
+
+                p.getInventory().addItem(IS);
+
+                }
+
+
 
 
             /* Gives the player The Experience it would have had from the Block-Breaking */
