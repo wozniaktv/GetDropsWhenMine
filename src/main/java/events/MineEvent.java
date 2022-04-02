@@ -37,14 +37,6 @@ public class MineEvent implements Listener {
 
                 }
 
-
-
-
-            /* Gives the player The Experience it would have had from the Block-Breaking */
-            p.setTotalExperience(p.getTotalExperience()+event.getExpToDrop());
-            /* And of course i now disable the natural dropping of the experience for not letting players have 2x experience from blocks. */
-            event.setExpToDrop(0);
-
         }
 
     }
