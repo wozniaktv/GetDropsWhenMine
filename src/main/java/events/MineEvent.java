@@ -1,5 +1,6 @@
 package events;
 
+import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,8 @@ public class MineEvent implements Listener {
         if(event.isDropItems()){
             /* Gets the Player so he can do some stuff to the player. */
             Player p = event.getPlayer();
+            if(p.getGameMode() != GameMode.SURVIVAL)
+                return;
 
             /* Cancels the drops. */
             event.setDropItems(false);
